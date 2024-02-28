@@ -11,36 +11,24 @@ import java.util.concurrent.Semaphore;
  * @author indir
  */
 public class Cliente implements Runnable{
-    int idCliente;
+    public int idCliente;
     Supermercado supermercado;
-    static int pasillos= 5;
-     static Semaphore semaforo=new Semaphore(pasillos);
-      long tiempo_producto= (long) (Math.random() *(400-200))+800;
-      int producto;
-      
+    public static int nPasillos = 5;
+    static Semaphore semaforo = new Semaphore(nPasillos);
 
-    public Cliente(int id, Supermercado mercado) {
-        this.idCliente = id;
-        this.supermercado = mercado;
+    public Cliente(int idCliente, Supermercado supermercado) {
+        this.idCliente = idCliente;
+        this.supermercado = supermercado;
     }
-     
-      
-    //igual que el de clase
+    
     @Override
     public void run(){
         try{
-            /*
-            si el num de vestidores es mayor que cero
-            permite el acceso al cliente
-            */
-            semaforo.acquire();
-            this.supermercado.visitarPasillo(idCliente);
+           semaforo.acquire();
+           this.supermercado.comprarProducto(this.idCliente);
         }catch(InterruptedException e){
-            System.out.println("El hilo ha sido interrumpido");
+            System.out.println(e.getMessage());
         }
-        //quita el persimo para que el user entre al vestidor
         semaforo.release();
     }
-    
-              
 }
