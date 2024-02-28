@@ -9,11 +9,11 @@ package practica2;
  * @author indir
  */
 public class Supermercado {
-
-    static long tiempoPromedio = 0;
-    static long productoTotal = 0;
     static long TiempoCajaPromedio = 0;
     static long cantidadClientes = 0;
+    static long tiempoPromedio = 0;
+    static long productoTotal = 0;
+    
 
     public void comprarProducto(int idCliente) {
         long tiempoLlegada = (long) ((Math.random() * 301) + 300); //1. tiempo de llegada  de los clientes 
@@ -56,10 +56,4 @@ public class Supermercado {
                 + "\nEl tiempo promedio de la atencion de la cajera es de " + (TiempoCajaPromedio / cantidadClientes));
     }
 
-    public void Reiniciar() {
-        tiempoPromedio = 0;
-        productoTotal = 0;
-        TiempoCajaPromedio = 0;
-        cantidadClientes = 0;
-    }
 }
