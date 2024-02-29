@@ -21,29 +21,30 @@ public class Supermercado {
 
         try {
             cantidadClientes++;  // se suma la cantidad de clientes
-            System.out.println("El cliente " + idCliente + " acaba de entrar al supermercado ");
+            System.out.println("\nEl cliente con el ID " + idCliente + " acaba de llegar al supermercado ");
             Thread.sleep(tiempoLlegada);
             tiempoPromedio += tiempoLlegada;
-            System.out.println("El cliente " + idCliente + " escogio el pasillo numero " + pasillos);
+            System.out.println("\nEl cliente " + idCliente + " escogio el pasillo numero " + pasillos);
             long producto_Cantidad = 0;
             for (int i = 8; i < 14; i++) {   // el cliente recorre todos los pasillos
 
                 long productos = (long) (Math.random() * 7); ///3
                 long tiempoEnPasillos = (long) ((Math.random() * 200) + 250);
-                System.out.println("El cliente " + idCliente + " ingreso  al pasillo " + i);
+                System.out.println("\nEl cliente " + idCliente + " ingreso  al pasillo " + i);
 
                 Thread.sleep(tiempoEnPasillos);
-                System.out.println("El cliente " + idCliente + " eligio " + productos + " producto(s) en el pasillo " + i);
+                System.out.println("\nEl cliente " + idCliente + " eligio " + productos + " producto(s) en el pasillo " + i
+                + " y duro un total de " + tiempoEnPasillos+ " milisegundos.");
                 producto_Cantidad += productos; //La cantidad de productos elegidos se va sumando
                 productoTotal += productos;
                 tiempoPromedio += tiempoEnPasillos;
             }
             
-            System.out.println("El cliente " + idCliente + "  finalizo sus compras  y ahora  se dirige a caja");
+            System.out.println("\nEl cliente " + idCliente + "  finalizo sus compras  y ahora  se dirige a caja.");
             long tiempoProductos = (long) (((Math.random() * 201) + 600) * producto_Cantidad); //4
             Thread.sleep(tiempoProductos);
             tiempoPromedio += tiempoProductos;
-            System.out.println("El cliente " + idCliente + " pago sus " + producto_Cantidad + " productos.");
+            System.out.println("\nEl cliente " + idCliente + " pago sus " + producto_Cantidad + " productos.");
             TiempoCajaPromedio += tiempoProductos;
         } catch (InterruptedException e) {
             System.out.println(e.getMessage());
@@ -51,9 +52,12 @@ public class Supermercado {
     }
 
     public void Totales() {
-        System.out.println("Los productos totales adquiridos por los clientes fueron " + productoTotal
-                + "\nEl tiempo promedio de la estadia de los clientes es " + (tiempoPromedio / cantidadClientes)
-                + "\nEl tiempo promedio de la atencion de la cajera es de " + (TiempoCajaPromedio / cantidadClientes));
+        System.out.println("\n------------- TOTALES --------------" 
+                +"\nSe compraron un total de " + productoTotal+ " productos entre todos los clientes"
+                + "\nEl tiempo promedio de permanencia de los clientes en el supermercado fue " + (tiempoPromedio / cantidadClientes)
+                + " milisegundos"
+                + "\nEl tiempo promedio de la atencion de la cajera es de " + (TiempoCajaPromedio / cantidadClientes) 
+                + " milisegundos");
     }
 
 }
