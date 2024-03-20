@@ -37,6 +37,7 @@ public class Main {
       
         Supermercado superm = new Supermercado();
         ExecutorService ejecutor = Executors.newFixedThreadPool(5);
+        
         for (int i = 1; i <= 100; i++) {
            ejecutor.execute(new Cliente(i, superm));
         }
